@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|json|css|md)\"",
+    "postinstall": "husky install",
+    "validate": "yarn format && yarn lint"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
@@ -19,6 +22,12 @@
   },
   "devDependencies": {
     "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0"
+    "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }

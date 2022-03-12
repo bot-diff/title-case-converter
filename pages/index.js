@@ -5,11 +5,11 @@ import {
   Button,
   useColorMode,
   useColorModeValue,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react'
 
 export default function Home() {
-  const { toggleColorMode } = useColorMode();
-  const backgroundColor = useColorModeValue("gray.100", "gray.700");
+  const { toggleColorMode } = useColorMode()
+  const backgroundColor = useColorModeValue('gray.100', 'gray.700')
   return (
     <Flex
       height="100vh"
@@ -26,5 +26,5 @@ export default function Home() {
         <Button onClick={toggleColorMode}>change theme</Button>
       </Flex>
     </Flex>
-  );
+  )
 }
