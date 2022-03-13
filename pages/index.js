@@ -7,6 +7,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react'
+
 import { FaGlobeAfrica } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 
