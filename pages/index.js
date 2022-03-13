@@ -31,8 +31,9 @@ export default function Home() {
     <>
       <Flex
         height="100vh"
-        alignItems="flex-start"
+        alignItems="center"
         justifyContent="center"
+        direction="column"
         pt={150}
       >
         {/* TODO: wrap a github icon button with Flex row (as a header navbar) */}
@@ -45,7 +46,7 @@ export default function Home() {
         >
           <Stack spacing={2} mb={5}>
             <Heading as="h2" align="center" size="3xl">
-              Title Case Converter
+              {t('Title Case Converter')}
             </Heading>
             <Text align="center" fontSize="2xl">
               Convert any text into a title case format.
@@ -81,36 +82,37 @@ export default function Home() {
               />
             </Tooltip>
           </Flex>
-        </Flex>
-        <Flex
-          maxWidth="100vh"
-          height="25vh"
-          style={{ backgroundColor }}
-          rounded={10}
-        >
-          <Text p={4} fontSize="xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci
-            nulla pellentesque dignissim enim.
-          </Text>
-        </Flex>
-        <Button onClick={toggleColorMode}>change theme</Button>
-        <Flex>
-          <Flex dir="row" alignItems="center">
-            <Select
-              icon={<FaGlobeAfrica />}
-              width={150}
-              size="sm"
-              mb={3}
-              id="lang"
-              onChange={(e) => changeLanguage(e.target.value)}
-            >
-              <option value="en" selected>
-                English
-              </option>
-              <option value="de">Deutsch</option>
-            </Select>
+
+          <Flex
+            maxWidth="100vh"
+            height="25vh"
+            style={{ backgroundColor }}
+            rounded={10}
+          >
+            <Text p={4} fontSize="xl">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci
+              nulla pellentesque dignissim enim.
+            </Text>
           </Flex>
+          <Button onClick={toggleColorMode}>change theme</Button>
+        </Flex>
+      </Flex>
+      <Flex>
+        <Flex dir="row" alignItems="center">
+          <Select
+            icon={<FaGlobeAfrica />}
+            width={150}
+            size="sm"
+            mb={3}
+            id="lang"
+            onChange={(e) => changeLanguage(e.target.value)}
+          >
+            <option value="en" selected>
+              English
+            </option>
+            <option value="de">Deutsch</option>
+          </Select>
         </Flex>
       </Flex>
     </>
