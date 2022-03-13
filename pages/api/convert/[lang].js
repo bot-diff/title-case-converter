@@ -14,29 +14,29 @@ export default function langHandler(req, res) {
     case 'en':
       try {
         const result = titleCase(text)
-        res.status(200).json({ convertedText: result })
+        return res.status(200).json({ convertedText: result })
       } catch (e) {
-        res
-          .status(500)
-          .json({ message: 'Error occurred while processing your request' })
+        return res.status(500).json({
+          message: `Error occurred while processing your request\n${e}`,
+        })
       }
     case 'de':
       try {
         const result = ''
-        res.status(200).json({ convertedText: result })
+        return res.status(200).json({ convertedText: result })
       } catch (e) {
-        res
-          .status(500)
-          .json({ message: 'Error occurred while processing your request' })
+        return res.status(500).json({
+          message: `Error occurred while processing your request\n${e}`,
+        })
       }
     case 'fr':
       try {
         const result = convert(text)
-        res.status(200).json({ convertedText: result })
+        return res.status(200).json({ convertedText: result })
       } catch (e) {
-        res
-          .status(500)
-          .json({ message: 'Error occurred while processing your request' })
+        return res.status(500).json({
+          message: `Error occurred while processing your request\n${e}`,
+        })
       }
   }
 }
