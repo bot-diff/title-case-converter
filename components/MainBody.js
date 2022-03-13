@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import {
   Flex,
   Select,
@@ -14,6 +15,33 @@ import { FaGlobeAfrica } from 'react-icons/fa'
 import { MdContentCopy } from 'react-icons/md'
 
 export default function MainBody({ t }) {
+  const [titleLang, setTitleLang] = useState('en')
+  const [originalTitle, setOriginalTitle] = useState('')
+  const [convertedTitle, setConvertedTitle] = useState('')
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    const requestTitle = async (options) => {
+      try {
+        const res = await fetch(`/api/convert/${titleLang}`, options)
+        const data = await res.json()
+        setConvertedTitle(data.convertedText)
+        setError(false)
+      } catch (e) {
+        setError(true)
+      }
+    }
+
+    if (originalTitle !== '') {
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: originalTitle }),
+      }
+      requestTitle(options)
+    }
+  }, [titleLang, originalTitle])
+
   return (
     <Flex
       height="90vh"
@@ -27,9 +55,10 @@ export default function MainBody({ t }) {
             {t('Title Case Converter')}
           </Heading>
           <Text align="center" fontSize="2xl">
-            {t('Convert any text into a title case format.')}
+            {t('Convert any text into a title case format')}
           </Text>
         </Stack>
+
         <Input
           placeholder={t('the quick brown fox jumps over the lazy dog')}
           variant="outline"
@@ -43,12 +72,20 @@ export default function MainBody({ t }) {
           textAlign="center"
           bg="gray.100"
           color="gray.700"
+          onChange={(e) => setOriginalTitle(e.target.value)}
         />
 
-        <Select icon={<FaGlobeAfrica />} width={150} size="sm" mb={1}>
+        <Select
+          icon={<FaGlobeAfrica />}
+          width={150}
+          size="sm"
+          mb={1}
+          onChange={(e) => setTitleLang(e.target.value)}
+        >
           <option value="en" selected>
             English
           </option>
+          <option value="de">Deutsch</option>
           <option value="fr">Français</option>
         </Select>
 
@@ -62,10 +99,12 @@ export default function MainBody({ t }) {
               colorScheme="blue"
               aria-label="Copy to clipboard"
               icon={<MdContentCopy />}
+              onClick={() => {
+                navigator.clipboard.writeText(convertedTitle)
+              }}
             />
           </Tooltip>
         </Flex>
-
         <Flex
           maxWidth="100vh"
           height="25vh"
@@ -78,7 +117,7 @@ export default function MainBody({ t }) {
           rounded={10}
         >
           <Text p={4} fontSize="xl">
-            {t('Lorem ipsum')}
+            {convertedTitle === '' ? t('Lorem ipsum') : convertedTitle}
           </Text>
         </Flex>
       </Flex>

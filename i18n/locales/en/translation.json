@@ -4,9 +4,9 @@
   "Switch to light mode": "Switch to light mode",
   "Change language": "Change language",
   "Title Case Converter": "Title Case Converter",
-  "Convert any text into a title case format.": "Convert any text into a title case format.",
+  "Convert any text into a title case format": "Convert any text into a title case format",
   "the quick brown fox jumps over the lazy dog": "the quick brown fox jumps over the lazy dog",
   "The result:": "The result:",
   "Copy": "Copy",
-  "Lorem ipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed odio morbi quis commodo odio aenean sed adipiscing."
+  "Lorem ipsum": "The Quick Brown Fox Jumps over the Lazy Dog"
 }

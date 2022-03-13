@@ -23,7 +23,9 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-i18next": "^11.15.6",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "title-case": "^3.0.3",
+    "titlecase-french": "^1.0.1"
   },
   "devDependencies": {
     "eslint": "8.11.0",
