@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import './i18n'
+import '../i18n/i18n'
 import { I18nextProvider } from 'react-i18next'
 import i18next from 'i18next'
 
