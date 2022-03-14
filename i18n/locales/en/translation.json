@@ -8,5 +8,8 @@
   "the quick brown fox jumps over the lazy dog": "the quick brown fox jumps over the lazy dog",
   "The result:": "The result:",
   "Copy": "Copy",
+  "textCopied": "The text has been successfully copied.",
+  "textNotConverted": "An Error occurred while converting the text. Please try again later.",
+  "errorToSave": "Please contact your administrator and share with him the following error: ",
   "Lorem ipsum": "The Quick Brown Fox Jumps over the Lazy Dog"
 }

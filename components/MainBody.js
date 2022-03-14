@@ -10,6 +10,7 @@ import {
   Spacer,
   Tooltip,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react'
 import { FaGlobeAfrica } from 'react-icons/fa'
 import { MdContentCopy } from 'react-icons/md'
@@ -18,7 +19,17 @@ export default function MainBody({ t }) {
   const [titleLang, setTitleLang] = useState('en')
   const [originalTitle, setOriginalTitle] = useState('')
   const [convertedTitle, setConvertedTitle] = useState('')
-  const [error, setError] = useState(false)
+  const [error, setError] = useState({ isError: false, errorMessage: '' })
+  const toast = useToast({
+    position: 'top',
+    isClosable: true,
+  })
+  function errorToast(title, id) {
+    toast({ id, title, status: 'error' })
+  }
+  function updateErrorToast(title, id) {
+    toast.update(id, { title, status: 'error' })
+  }
 
   useEffect(() => {
     const requestTitle = async (options) => {
@@ -26,9 +37,11 @@ export default function MainBody({ t }) {
         const res = await fetch(`/api/convert/${titleLang}`, options)
         const data = await res.json()
         setConvertedTitle(data.convertedText)
-        setError(false)
+        setError({ isError: false, errorMessage: '' })
       } catch (e) {
-        setError(true)
+        // toast.isActive(errorToastID) ? updateErrorToast(t('textNotConverted'), errorToastID) : errorToast(t('textNotConverted'), errorToastID)
+        // toast.isActive(errorToastID2) ? updateErrorToast(t('errorToSave') + e, errorToastID2) : errorToast(t('errorToSave') + e, errorToastID2)
+        setError({ isError: true, errorMessage: e })
       }
     }
 
@@ -100,6 +113,7 @@ export default function MainBody({ t }) {
               aria-label="Copy to clipboard"
               icon={<MdContentCopy />}
               onClick={() => {
+                toast({ title: t('textCopied'), status: 'success' })
                 navigator.clipboard.writeText(convertedTitle)
               }}
             />
