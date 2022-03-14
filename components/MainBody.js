@@ -79,13 +79,12 @@ export default function MainBody({ t }) {
           color="gray.700"
           onChange={function (e) {
             setOriginalTitle(e.target.value)
-            error.isError
-              ? toast({
-                  id: 'errorToast',
-                  title: t('textNotConverted'),
-                  status: 'error',
-                })
-              : toast.close('errorToast')
+            if (error.isError)
+            toast({
+              id: 'errorToast',
+              title: t('textNotConverted'),
+              status: 'error',
+            })
           }}
         />
 
