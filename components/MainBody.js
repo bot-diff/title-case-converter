@@ -24,12 +24,6 @@ export default function MainBody({ t }) {
     position: 'top',
     isClosable: true,
   })
-  function errorToast(title, id) {
-    toast({ id, title, status: 'error' })
-  }
-  function updateErrorToast(title, id) {
-    toast.update(id, { title, status: 'error' })
-  }
 
   useEffect(() => {
     const requestTitle = async (options) => {
@@ -39,8 +33,6 @@ export default function MainBody({ t }) {
         setConvertedTitle(data.convertedText)
         setError({ isError: false, errorMessage: '' })
       } catch (e) {
-        // toast.isActive(errorToastID) ? updateErrorToast(t('textNotConverted'), errorToastID) : errorToast(t('textNotConverted'), errorToastID)
-        // toast.isActive(errorToastID2) ? updateErrorToast(t('errorToSave') + e, errorToastID2) : errorToast(t('errorToSave') + e, errorToastID2)
         setError({ isError: true, errorMessage: e })
       }
     }
@@ -85,7 +77,16 @@ export default function MainBody({ t }) {
           textAlign="center"
           bg="gray.100"
           color="gray.700"
-          onChange={(e) => setOriginalTitle(e.target.value)}
+          onChange={function (e) {
+            setOriginalTitle(e.target.value)
+            error.isError
+              ? toast({
+                  id: 'errorToast',
+                  title: t('textNotConverted'),
+                  status: 'error',
+                })
+              : toast.close('errorToast')
+          }}
         />
 
         <Select
@@ -113,7 +114,16 @@ export default function MainBody({ t }) {
               aria-label="Copy to clipboard"
               icon={<MdContentCopy />}
               onClick={() => {
-                toast({ title: t('textCopied'), status: 'success' })
+                toast.isActive('copyingToast')
+                  ? toast.update('copyingToast', {
+                      title: t('textCopied'),
+                      status: 'success',
+                    })
+                  : toast({
+                      id: 'copyingToast',
+                      title: t('textCopied'),
+                      status: 'success',
+                    })
                 navigator.clipboard.writeText(convertedTitle)
               }}
             />
