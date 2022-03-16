@@ -80,11 +80,11 @@ export default function MainBody({ t }) {
           onChange={function (e) {
             setOriginalTitle(e.target.value)
             if (error.isError)
-            toast({
-              id: 'errorToast',
-              title: t('textNotConverted'),
-              status: 'error',
-            })
+              toast({
+                id: 'errorToast',
+                title: t('textNotConverted'),
+                status: 'error',
+              })
           }}
         />
 
