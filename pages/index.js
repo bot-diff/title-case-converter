@@ -13,6 +13,7 @@ export default function Home() {
           name="description"
           content="Convert any text into a title case format"
         />
+        <meta name="google-site-verification" content="zvC1nvPqvpqL97fXDh_zrqVY6k3Cms7O3iksGrreI0w" />
         <link rel="icon" href="/icon.ico" />
       </Head>
       <HeaderNavbar t={t} i18n={i18n} />
